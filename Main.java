@@ -15,6 +15,7 @@ public class Main {
         ex1();
         ex2();
         ex3();
+        ex4();
 
 
     }
@@ -190,11 +191,7 @@ public class Main {
                 //System.out.print(level);
 
             }
-////            if (i+1==Math.pow(2,level)) {
-//                for (int j = max_level; j > level+1; j--) {
-//                    System.out.print("  ");
-//                }
-////            }
+
             String separ = "";
 
             for (int j = 1; j < (max_level - level); j++) {
@@ -213,6 +210,53 @@ public class Main {
 
         }
         System.out.println();
+    }
+    private static void ex4(){
+        int[] ferz_row = {0,0,0,0,0,0,0,0};
+
+        while (true){
+            if (check (ferz_row)){
+                break;
+            }
+            ferz_row[0]+=1;
+            check_max(ferz_row);
+        }
+        printPole(ferz_row);
+    }
+    private static boolean check (int[] a){
+        for (int i = 0; i <a.length; i++) {
+            for (int j = 0; j <a.length ; j++) {
+                if (i!=j) {
+                    if ((a[i] == a[j] ) | (Math.abs(i - j) == Math.abs(a[i] - a[j]))) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    private static void check_max(int[] a){
+        for (int i = 0; i < a.length-1; i++) {
+            if (a[i]==a.length){
+                a[i]=0;
+                a[i+1]+=1;
+            }
+
+        }
+    }
+
+    private static void printPole (int[] a){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                String figa=" ";
+                if (a[i]==j){
+                    figa="Ф";
+                }
+                System.out.print("|"+figa);
+
+            }
+            System.out.println("|");
+        }
     }
 }
 
